@@ -2,7 +2,7 @@
    TEMEL SIFIRLAMA & MOBİL AYARLARI
    =========================== */
 * {
-    box-sizing: border-box; /* Çerçeve ve dolguların genişliği taşırmasını engeller */
+    box-sizing: border-box;
 }
 
 body {
@@ -12,8 +12,8 @@ body {
     background-color: #f9f9f9;
     color: #333;
     width: 100%;
-    overflow-x: hidden; /* SAĞA SOLA KAYMAYI KESİN ENGELLER */
-    padding-bottom: 80px; /* Footer butonu için alt boşluk */
+    overflow-x: hidden;
+    padding-bottom: 80px;
 }
 
 /* ===========================
@@ -26,51 +26,47 @@ body {
     width: 100%;
 }
 
-/* 1. Logo Alanı */
 .logo-alani {
     text-align: center;
     margin-bottom: 5px;
 }
 
 .ana-logo {
-    max-width: 160px; /* Logo çok büyük olmasın */
+    max-width: 160px;
     height: auto;
 }
 
-/* 2. Hero Satırı (Resim - Yazı - Resim) */
 .hero-satir {
-    display: flex; /* Yan yana dizmek için */
-    justify-content: space-between; /* Aralarını aç */
-    align-items: center; /* Ortala */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
-    padding: 0 5px; /* Kenarlardan çok az boşluk */
+    padding: 0 5px;
 }
 
-/* Yan Kutular (Resimler) */
 .yan-kutu {
-    width: 25%; /* Ekranın çeyreği kadar yer kaplasın */
+    width: 25%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .yan-img {
-    width: 100%; /* Bulunduğu kutuyu tamamen doldursun */
+    width: 100%;
     height: auto;
     object-fit: contain;
-    max-height: 80px; /* Resim dikeyde çok uzamasın */
+    max-height: 80px;
 }
 
-/* Orta Kutu (Yazı) */
 .orta-kutu {
-    width: 50%; /* Ekranın yarısı yazıya */
+    width: 50%;
     text-align: center;
     padding: 0 2px;
 }
 
 .baslik-text {
     font-family: 'Teko', sans-serif;
-    font-size: 26px; /* Yazı boyutu */
+    font-size: 26px;
     line-height: 0.9;
     color: #c0392b;
     margin: 0;
@@ -130,12 +126,12 @@ body {
     border-radius: 6px;
     object-fit: cover;
     margin-right: 10px;
-    flex-shrink: 0; /* Resmin sıkışmasını engeller */
-    cursor: pointer; /* YENİ EKLENDİ - Tıklanabilir olduğunu belirtir */
+    flex-shrink: 0;
+    cursor: pointer; 
 }
 
 .urun-bilgi {
-    flex: 1; /* Kalan alanı doldur */
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
@@ -197,28 +193,45 @@ body {
 }
 
 /* ===========================
-   YENİ EKLENEN RESİM MODALI STİLLERİ
+   GÜNCELLENMİŞ RESİM MODALI STİLLERİ (iPhone UYUMLU)
    =========================== */
 .modal-overlay {
-    display: none; /* Başlangıçta gizli */
     position: fixed;
     z-index: 1000;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.9); /* Arka plan karartması */
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
     justify-content: center;
     align-items: center;
+
+    /* GÜNCELLENEN KISIM: Başlangıçta gizli ve görünmez yap */
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease; /* Yumuşak geçiş efekti */
+}
+
+/* YENİ EKLENDİ: Modal görünür olduğunda bu sınıf eklenecek */
+.modal-overlay.visible {
+    visibility: visible;
+    opacity: 1;
 }
 
 .modal-icerik {
-    margin: auto;
     display: block;
     width: 90%;
     max-width: 600px;
     border-radius: 5px;
+    /* YENİ EKLENDİ: Küçülme animasyonu için */
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+/* YENİ EKLENDİ: Modal görünür olunca resim normal boyutuna gelsin */
+.modal-overlay.visible .modal-icerik {
+    transform: scale(1);
 }
 
 .modal-kapat {

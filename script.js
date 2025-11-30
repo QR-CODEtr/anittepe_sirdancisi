@@ -38,9 +38,8 @@ async function fetchMenu() {
 
 function renderMenu(items) {
     const container = document.getElementById('menu-container');
-    container.innerHTML = ''; // "Yükleniyor" yazısını temizle
-    
-    // Modal elementlerini seç
+    container.innerHTML = ''; 
+
     const modal = document.getElementById("resim-modal");
     const modalImg = document.getElementById("buyuk-resim");
 
@@ -66,25 +65,28 @@ function renderMenu(items) {
             const article = document.createElement('article');
             article.classList.add('urun');
 
-            let resimElement = null; // Resim elementini tutmak için değişken
-            let resimHTML = '';
+            let resimElement = null;
             
             if (urun.resim && urun.resim.trim() !== '') {
-                // img etiketini burada oluşturuyoruz
                 resimElement = document.createElement('img');
                 resimElement.src = urun.resim;
                 resimElement.alt = urun.ad;
                 resimElement.classList.add('urun-resim');
-                resimElement.onerror = () => { this.style.display='none' };
+                resimElement.onerror = function() { this.style.display='none' };
                 
-                // TIKLAMA OLAYINI BURADA EKLİYORUZ
-                resimElement.addEventListener('click', () => {
-                    modal.style.display = "flex"; // Modal'ı görünür yap
-                    modalImg.src = resimElement.src; // Tıklanan resmin kaynağını ata
-                });
+                // --- DEĞİŞİKLİK BURADA ---
+                // Hem 'click' (masaüstü/android) hem de 'touchstart' (iOS için daha güvenilir) olayını dinle
+                const openImage = (e) => {
+                    e.preventDefault(); // Dokunma olayının yanlışlıkla click'i tetiklemesini engelle
+                    modal.classList.add('visible'); // CSS ile görünür yap
+                    modalImg.src = resimElement.src; 
+                };
+                
+                resimElement.addEventListener('click', openImage);
+                resimElement.addEventListener('touchstart', openImage);
+                // --- DEĞİŞİKLİK SONU ---
             }
 
-            // innerHTML'i oluştur
             article.innerHTML = `
                 <div class="urun-bilgi">
                     <div class="urun-ust-kisim">
@@ -95,7 +97,6 @@ function renderMenu(items) {
                 </div>
             `;
 
-            // Eğer resim elementi oluşturulduysa, article'ın başına ekle
             if (resimElement) {
                 article.prepend(resimElement);
             }
@@ -107,20 +108,22 @@ function renderMenu(items) {
     });
 }
 
-// YENİ: MODAL YÖNETİMİ İÇİN FONKSİYON
+// GÜNCELLENMİŞ MODAL YÖNETİMİ FONKSİYONU
 function setupModal() {
     const modal = document.getElementById("resim-modal");
     const span = document.getElementsByClassName("modal-kapat")[0];
 
-    // Kapatma (X) butonuna tıklandığında modalı kapat
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
+    const closeModal = () => {
+        modal.classList.remove('visible'); // CSS ile gizle
+    };
 
+    // Kapatma (X) butonuna tıklandığında modalı kapat
+    span.addEventListener('click', closeModal);
+    
     // Karartılmış arka plana tıklandığında modalı kapat
-    modal.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            closeModal();
         }
-    }
+    });
 }
