@@ -1,0 +1,196 @@
+/* ===========================
+   TEMEL SIFIRLAMA & MOBİL AYARLARI
+   =========================== */
+* {
+    box-sizing: border-box; /* Çerçeve ve dolguların genişliği taşırmasını engeller */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    width: 100%;
+    overflow-x: hidden; /* SAĞA SOLA KAYMAYI KESİN ENGELLER */
+    padding-bottom: 80px; /* Footer butonu için alt boşluk */
+}
+
+/* ===========================
+   HEADER (BAŞLIK)
+   =========================== */
+.mobil-header {
+    background: #fff;
+    padding-top: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    width: 100%;
+}
+
+/* 1. Logo Alanı */
+.logo-alani {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.ana-logo {
+    max-width: 90px; /* Logo çok büyük olmasın */
+    height: auto;
+}
+
+/* 2. Hero Satırı (Resim - Yazı - Resim) */
+.hero-satir {
+    display: flex; /* Yan yana dizmek için */
+    justify-content: space-between; /* Aralarını aç */
+    align-items: center; /* Ortala */
+    width: 100%;
+    padding: 0 5px; /* Kenarlardan çok az boşluk */
+}
+
+/* Yan Kutular (Resimler) */
+.yan-kutu {
+    width: 25%; /* Ekranın çeyreği kadar yer kaplasın */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.yan-img {
+    width: 100%; /* Bulunduğu kutuyu tamamen doldursun */
+    height: auto;
+    object-fit: contain;
+    max-height: 80px; /* Resim dikeyde çok uzamasın */
+}
+
+/* Orta Kutu (Yazı) */
+.orta-kutu {
+    width: 50%; /* Ekranın yarısı yazıya */
+    text-align: center;
+    padding: 0 2px;
+}
+
+.baslik-text {
+    font-family: 'Teko', sans-serif;
+    font-size: 26px; /* Yazı boyutu */
+    line-height: 0.9;
+    color: #c0392b;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.etiket {
+    font-size: 11px;
+    background: #333;
+    color: #fff;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 3px;
+    letter-spacing: 1px;
+}
+
+.kirmizi-cizgi {
+    height: 3px;
+    background: #c0392b;
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* ===========================
+   MENÜ KARTLARI
+   =========================== */
+#menu-container {
+    padding: 15px;
+    width: 100%;
+}
+
+.kategori-baslik {
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+    color: #c0392b;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+    margin: 20px 0 10px 0;
+    text-transform: uppercase;
+}
+
+.urun {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+}
+
+.urun-resim {
+    width: 75px;
+    height: 75px;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-right: 10px;
+    flex-shrink: 0; /* Resmin sıkışmasını engeller */
+}
+
+.urun-bilgi {
+    flex: 1; /* Kalan alanı doldur */
+    display: flex;
+    flex-direction: column;
+}
+
+.urun-ust-kisim {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.urun-ad {
+    font-size: 15px;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 0;
+    padding-right: 5px;
+}
+
+.urun-fiyat {
+    font-family: 'Teko', sans-serif;
+    font-size: 18px;
+    color: #c0392b;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.urun-aciklama {
+    font-size: 12px;
+    color: #777;
+    margin: 3px 0 0 0;
+    line-height: 1.2;
+}
+
+/* ===========================
+   SABİT BUTON (FOOTER)
+   =========================== */
+.mobil-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 10px 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    z-index: 999;
+}
+
+.siparis-btn {
+    display: block;
+    background-color: #27ae60;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 0 4px 10px rgba(39, 174, 96, 0.4);
+}
